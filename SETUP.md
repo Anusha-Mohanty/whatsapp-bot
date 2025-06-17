@@ -13,6 +13,7 @@
    - Copy `config.template.json` and make it to `config.json`
    - Update `your_name` in `config.json` with your actual name
    - Place `creds.json` (from admin) in the project root
+   - ADD THE .env file from the env_template
 
 3. **Run**
    ```bash
