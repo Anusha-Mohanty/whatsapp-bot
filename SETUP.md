@@ -26,7 +26,7 @@
 ## Google Sheets Format
 
 ### Required Columns
-- Phone: Recipient's phone number (with country code)
+- Phone: Recipient's phone number (with country code) change the number accordingly(rightnow it has mine)
 - Message: The message to send
 - Schedule: now or YY/MM/DD HH:MM (use "now" for immediate send)
 - Image: (Optional) Google Drive image link
