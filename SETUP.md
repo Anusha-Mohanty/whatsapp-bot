@@ -20,6 +20,8 @@
    npm start
    ```
    or run/double-click `run.bat`
+   
+➤ Scheduling works with CRON if set to run every 1 minute — the internal logic checks timestamps and handles pending messages automatically.
 
 ## Google Sheets Format
 
