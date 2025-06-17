@@ -18,14 +18,14 @@
    ```bash
    npm start
    ```
-   or double-click `run.bat`
+   or run/double-click `run.bat`
 
 ## Google Sheets Format
 
 ### Required Columns
 - Phone: Recipient's phone number (with country code)
 - Message: The message to send
-- Schedule: now or DD/MM/YYYY HH:MM (use "now" for immediate send)
+- Schedule: now or YY/MM/DD HH:MM (use "now" for immediate send)
 - Image: (Optional) Google Drive image link
 - Run: Set to "yes" to process
 - Handled By: Your name (must match config.json)
