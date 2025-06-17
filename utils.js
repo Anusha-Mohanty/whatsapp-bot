@@ -32,6 +32,7 @@ function nextRetryStatus(status) {
 
 // Parse scheduled time string into Luxon DateTime (fallback to null if invalid)
 function parseTime(timeString, timezone = 'Asia/Kolkata') {
+  if (timeString.trim() === 'now') return DateTime.now().setZone(timezone);
   if (!timeString) return null;
 
   let dt;
