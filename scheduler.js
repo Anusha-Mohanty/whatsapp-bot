@@ -1,4 +1,3 @@
-// scheduler.js
 const { sendMessage } = require('./sendMessage');
 const { getRows, updateCell } = require('./sheets');
 const { parseTime } = require('./utils');
@@ -31,7 +30,9 @@ async function processSheet(sheetName, isScheduled, client) {
     if (row['Status']?.includes('✅ Sent')) continue;
 
     const name = row['Name'] || '';
-    const number = row['Phone'].replace(/\s+/g, '');
+    const rawNumber = row['Phone'];
+    const number = rawNumber.replace(/[^\d]/g, ''); // Remove +, spaces, dashes etc.
+
     const originalMessage = row['Message'] || '';
     const message = originalMessage.replace(/{name}/g, name).replace(/<name>/g, name);
     const imageUrl = row['Image'] || '';
@@ -40,8 +41,10 @@ async function processSheet(sheetName, isScheduled, client) {
     const retryCount = parseInt((row['Status']?.match(/Retry (\d+)/) || [])[1] || 0);
     const scheduledTimeStr = (row['Time'] || '').trim().toLowerCase();
 
-    if (!number || number.length < 10) {
-      await updateCell(sheetName, index, 'I', '❌ Invalid phone number');
+    // ✅ International number validation: 10 to 15 digits
+    if (!/^\d{10,15}$/.test(number)) {
+      console.warn(`⚠️ Invalid number: "${rawNumber}" → cleaned: "${number}"`);
+      await updateCell(sheetName, index, 'I', `❌ Invalid phone number`);
       continue;
     }
 
